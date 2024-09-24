@@ -20,18 +20,21 @@ def main():
     kk_rct.center = 300, 200
 
     while True:
+        movex = 0
+        movey = 0
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_list = pg.key.get_pressed()
         if key_list[pg.K_UP]:
-            kk_rct.move_ip((0,-1))
+            movey += -1
         if key_list[pg.K_DOWN]:
-            kk_rct.move_ip((0,1))
+            movey += 1
         if key_list[pg.K_RIGHT]:
-           kk_rct.move_ip((2,0))
+            movex += 2
         if key_list[pg.K_LEFT]:
-            kk_rct.move_ip((-1,0))
-        kk_rct.move_ip((-1,0)) 
+            movex += -1
+        movex -= 1
+        kk_rct.move_ip((movex,movey)) 
         x = -(tmr%1600)
         screen.blit(bg_img, [x, 0])
         screen.blit(bg_img2, [x+1599, 0])
